@@ -21,7 +21,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
   // Default properties
   constructor() {
     super();
-    this.teamName = "deafult team name";
+    this.teamName = "Deafult team name";
     this.iceCost = 0;
     this.iceHours = 0;
     this.numOfPlayers = 1;
