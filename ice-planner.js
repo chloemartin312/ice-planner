@@ -18,28 +18,25 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
     return "ice-planner";
   }
 
+  // Default properties
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/ice-planner.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
+    this.teamName = "deafult team name";
+    this.iceCost = 0;
+    this.iceHours = 0;
+    this.numOfPlayers = 1;
+    this.coachCoast = 0;
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      teamName: { type: String },
+      iceCost: { type: Number, attribute: "ice-cost" },
+      iceHours: { type: Number, attribute: "ice-hours" },
+      numOfPlayers: { type: Number, attribute: "num-of-players" },
+      coachCoast: { type: Number, attribute: "coach-cost" }
     };
   }
 
@@ -49,27 +46,74 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
+        background-color: var(--ddd-theme-default-skyLight);
+        font-family: var(--ddd-font-secondary);
       }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+
+      .header {
+        text-align: left;
+        color: var(--ddd-theme-default-nittanyNavy);
+        padding: 10px;
+        margin: 10px;
       }
-      h3 span {
-        font-size: var(--ice-planner-label-font-size, var(--ddd-font-size-s));
+
+      .inputs, .fixed-values, .team-logo, .reciept {
+        background-color: var(--ddd-theme-default-skyMaxLight);
+        border: 2px solid var(--ddd-theme-default-nittanyNavy);
+        border-radius: 20px;
+        color: var(--ddd-theme-default-nittanyNavy);
+        margin: 10px;
+        padding: 10px;
       }
+
+      .container {
+        display: flex;
+        gap: 10px;
+        margin: 10px;
+      }
+      .fixed-values, .team-logo {
+        flex-grow: 1; 
+      }
+      
     `];
   }
 
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
+      <div class="header">
+        <h2>Ice Planner</h2>
+      </div>
+
+      <div class="inputs">
+        <p>Team Name: </p>
+        <p>Ice Cost: </p>
+        <p>Ice Hours: </p>
+        <p>Number of Players: </p>
+        <p>Coach Cost:</p>
+      </div>
+
+      <div class="container">
+        <div class="fixed-values">
+          <h3>Fixed Values</h3>
+          <p>Transaction Fee: </p>
+        </div>
+
+        <div class="team-logo">
+          <h3>Go ${this.teamName}!</h3>
+          <img src="" alt="Logo">
+        </div>  
+       </div>
+
+      <div class="reciept">
+        <h3>${this.teamName} Reciept:</h3>
+        <p>Total Ice Cost: $${this.iceCost * this.iceHours}</p>
+        <p>Total Coach Cost: $${this.coachCoast}</p>
+        <p>Transaction Fee: $${((this.iceCost * this.iceHours) + this.coachCoast) * 0.02}</p>
+        <h3>Total Cost: $${((this.iceCost * this.iceHours) + this.coachCoast) * 1.02}</h3>
+        <h3>Cost Per Player: $${(((this.iceCost * this.iceHours) + this.coachCoast) * 1.02) / this.numOfPlayers}</h3>
+      </div>
+    `;
   }
 
   /**
