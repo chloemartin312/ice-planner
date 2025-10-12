@@ -106,7 +106,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
        </div>
 
       <div class="reciept">
-        <h3>${this.teamName} Reciept:</h3>
+        <h3>${this.teamName} Reciept: </h3>
         <p>Total Ice Cost: $${this.iceCost * this.iceHours}</p>
         <p>Total Coach Cost: $${this.coachCoast}</p>
         <p>Transaction Fee: $${((this.iceCost * this.iceHours) + this.coachCoast) * 0.02}</p>
