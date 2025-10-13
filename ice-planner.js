@@ -53,8 +53,8 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
       .header {
         text-align: left;
         color: var(--ddd-theme-default-nittanyNavy);
-        padding: 10px;
-        margin: 10px;
+        padding: 16px;
+        margin: 16px;
       }
 
       .inputs, .fixed-values, .team-logo, .reciept {
@@ -62,14 +62,14 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
         border: 2px solid var(--ddd-theme-default-nittanyNavy);
         border-radius: 20px;
         color: var(--ddd-theme-default-nittanyNavy);
-        margin: 10px;
-        padding: 10px;
+        margin: 16px;
+        padding: 16px;
       }
 
       .container {
         display: flex;
-        gap: 10px;
-        margin: 10px;
+        gap: 8px;
+        margin: 16px;
       }
       .fixed-values, .team-logo {
         flex-grow: 1; 
