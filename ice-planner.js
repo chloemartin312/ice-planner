@@ -239,13 +239,13 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   copyShareLink() {
-    navigator.clipboard.writeText(this.shareURL);
+    navigator.clipboard.writeText(this.url);
     alert("Link copied to clipboard!");
   }
 
   buildURL() {
     const baseUrl = globalThis.location.origin;
-    const params = new URLSearchParams(paramData).toString();
+    const paramData = {}; 
 
     if (this.teamName) {
       paramData.teamName = this.teamName;
@@ -263,6 +263,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
       paramData.coachCost = this.coachCost;
     }
     
+    const params = new URLSearchParams(paramData).toString();
     this.url = `${baseUrl}?${params}`;
   }
 
