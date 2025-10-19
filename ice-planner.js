@@ -215,7 +215,7 @@ export class IcePlanner extends DDDSuper(I18NMixin(LitElement)) {
 
         <div class="team-logo">
           <h3>Go ${this.teamName}!</h3>
-          <img src="/hockey.jpg" alt="Logo">
+          <img src="./public/hockey.jpg" alt="Logo">
         </div>  
        </div>
 
